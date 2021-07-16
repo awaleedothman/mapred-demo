@@ -9,15 +9,15 @@ import org.apache.hadoop.mapred.Reporter;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class ReducerImpl extends MapReduceBase implements Reducer<Text, IntWritable, Text, NullWritable> {
-    public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, NullWritable> output,
+public class CombinerImpl extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
+    public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output,
                        Reporter reporter) throws IOException {
         int sum = 0;
         while (values.hasNext()) {
             sum += values.next().get();
         }
         if (sum == 1)
-            output.collect(key, NullWritable.get());
+            output.collect(key, new IntWritable(1));
         //else do nothing
     }
 }

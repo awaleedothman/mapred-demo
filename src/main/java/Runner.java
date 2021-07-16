@@ -12,7 +12,7 @@ public class Runner {
         conf.setOutputKeyClass(Text.class);
         conf.setOutputValueClass(IntWritable.class);
         conf.setMapperClass(MapperImpl.class);
-        conf.setCombinerClass(ReducerImpl.class);
+        conf.setCombinerClass(CombinerImpl.class);
         conf.setReducerClass(ReducerImpl.class);
         conf.setInputFormat(TextInputFormat.class);
         conf.setOutputFormat(TextOutputFormat.class);
